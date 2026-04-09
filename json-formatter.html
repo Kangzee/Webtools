@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free JSON Formatter & Validator Online</title>
+    <meta name="description" content="Format, beautify, and validate your JSON data instantly for free. No upload limits, runs directly in your browser securely.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: '#3b82f6', dark: '#0f172a' }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-primary flex items-center gap-2 hover:opacity-80 transition">
+                ← Back
+            </a>
+            <div class="text-sm font-bold text-dark">
+                JSON Formatter
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+        
+        <h1 class="text-2xl md:text-3xl font-extrabold text-dark mb-2">JSON Formatter & Validator</h1>
+        <p class="text-gray-500 mb-6 text-sm md:text-base">Paste your ugly JSON below to format, validate, or minify it instantly.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div class="flex flex-col gap-2">
+                <label class="font-bold text-sm text-gray-700">Input JSON</label>
+                <textarea id="json-input" class="w-full h-64 md:h-96 p-4 rounded-xl border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none font-mono text-sm resize-none shadow-inner" placeholder='{"paste": "your JSON here"}'></textarea>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <div class="flex justify-between items-end">
+                    <label class="font-bold text-sm text-gray-700">Output</label>
+                    <button onclick="copyOutput()" class="text-xs bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded transition">Copy</button>
+                </div>
+                <textarea id="json-output" class="w-full h-64 md:h-96 p-4 rounded-xl border border-gray-300 bg-gray-100 outline-none font-mono text-sm resize-none" readonly placeholder="Result will appear here..."></textarea>
+            </div>
+        </div>
+
+        <div id="error-msg" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <span class="block sm:inline font-mono text-sm" id="error-text"></span>
+        </div>
+
+        <div class="flex flex-wrap gap-3 mb-10">
+            <button onclick="formatJSON()" class="bg-primary hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-colors w-full md:w-auto">
+                Format / Beautify
+            </button>
+            <button onclick="minifyJSON()" class="bg-dark hover:bg-gray-800 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-colors w-full md:w-auto">
+                Minify
+            </button>
+            <button onclick="clearAll()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-colors w-full md:w-auto">
+                Clear
+            </button>
+        </div>
+
+        <div class="w-full bg-gray-200 border-2 border-dashed border-gray-400 text-gray-500 text-center py-8 rounded-xl mb-12 flex flex-col items-center justify-center">
+            <span class="font-bold">Adsterra Native Banner Area</span>
+            <span class="text-xs">Ads will be injected here after approval</span>
+        </div>
+
+        <article class="prose max-w-none text-gray-600 text-sm border-t border-gray-200 pt-8 mt-8">
+            <h2 class="text-xl font-bold text-dark mb-3">About Free JSON Formatter</h2>
+            <p class="mb-4">Our free online JSON formatter and validator tool helps developers clean up messy, minified JSON data. It perfectly indents your code, making it highly readable. The tool runs 100% locally in your browser, meaning your sensitive data is never uploaded to any server.</p>
+            
+            <h3 class="font-bold text-dark mt-6 mb-2">How to use?</h3>
+            <ul class="list-disc pl-5 mb-4">
+                <li>Copy your raw or minified JSON string.</li>
+                <li>Paste it into the left text area (Input).</li>
+                <li>Click the "Format / Beautify" button.</li>
+                <li>If your JSON is invalid, the validator will show the exact error.</li>
+            </ul>
+        </article>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm mt-auto">
+        <p>© 2026 ToolBox. Built for speed.</p>
+    </footer>
+
+    <script>
+        const inputEl = document.getElementById('json-input');
+        const outputEl = document.getElementById('json-output');
+        const errorDiv = document.getElementById('error-msg');
+        const errorText = document.getElementById('error-text');
+
+        function showError(msg) {
+            errorText.innerText = msg;
+            errorDiv.classList.remove('hidden');
+        }
+
+        function hideError() {
+            errorDiv.classList.add('hidden');
+        }
+
+        function formatJSON() {
+            hideError();
+            if(!inputEl.value.trim()) return;
+            try {
+                const parsed = JSON.parse(inputEl.value);
+                outputEl.value = JSON.stringify(parsed, null, 4); // Indentasi 4 spasi
+            } catch (e) {
+                showError("Invalid JSON: " + e.message);
+                outputEl.value = "";
+            }
+        }
+
+        function minifyJSON() {
+            hideError();
+            if(!inputEl.value.trim()) return;
+            try {
+                const parsed = JSON.parse(inputEl.value);
+                outputEl.value = JSON.stringify(parsed); // Tanpa spasi
+            } catch (e) {
+                showError("Invalid JSON: " + e.message);
+                outputEl.value = "";
+            }
+        }
+
+        function clearAll() {
+            inputEl.value = "";
+            outputEl.value = "";
+            hideError();
+        }
+
+        function copyOutput() {
+            if(!outputEl.value) return;
+            navigator.clipboard.writeText(outputEl.value).then(() => {
+                alert("Copied to clipboard!");
+            });
+        }
+    </script>
+</body>
+</html>
