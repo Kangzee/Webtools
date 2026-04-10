@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free QR Code Generator Online</title>
+    <meta name="description" content="Generate QR codes for URLs, text, and contacts instantly. 100% Free.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#3b82f6', dark: '#0f172a' } } } }</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center">
+            <a href="index.html" class="text-xl font-bold text-primary flex items-center gap-2">← Back</a>
+        </div>
+    </nav>
+    <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+        <h1 class="text-2xl font-extrabold text-dark mb-2">QR Code Generator</h1>
+        <p class="text-gray-500 mb-6">Convert any link or text into a QR code.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                <label class="font-bold text-sm text-gray-700">Enter URL or Text</label>
+                <textarea id="qr-text" class="w-full h-32 p-3 mt-2 border border-gray-300 rounded-xl outline-none focus:border-primary resize-none" placeholder="https://yourwebsite.com"></textarea>
+                <button onclick="generateQR()" class="w-full bg-primary text-white font-bold py-3 rounded-xl hover:bg-blue-600 transition mt-4">Generate QR Code</button>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col items-center justify-center min-h-[250px]">
+                <div id="qrcode" class="p-4 bg-white border-2 border-dashed border-gray-200 rounded-xl flex items-center justify-center">
+                    <span class="text-gray-400 text-sm">QR Code will appear here</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm mt-auto"><p>© 2026 ToolBox.</p></footer>
+    
+    <script>
+        let qrcode = null;
+        function generateQR() {
+            let text = document.getElementById('qr-text').value;
+            let container = document.getElementById('qrcode');
+            if(!text) return alert("Please enter some text or URL.");
+            
+            container.innerHTML = ""; // Bersihkan QR sebelumnya
+            container.classList.remove('border-dashed', 'border-gray-200', 'border-2');
+            
+            qrcode = new QRCode(container, {
+                text: text,
+                width: 200,
+                height: 200,
+                colorDark : "#0f172a",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        }
+    </script>
+</body>
+</html>

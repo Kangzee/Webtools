@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free URL Encoder and Decoder</title>
+    <meta name="description" content="Encode and decode URLs securely in your browser.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#3b82f6', dark: '#0f172a' } } } }</script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center">
+            <a href="index.html" class="text-xl font-bold text-primary flex items-center gap-2">← Back</a>
+        </div>
+    </nav>
+    <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+        <h1 class="text-2xl font-extrabold text-dark mb-2">URL Encode & Decode</h1>
+        <p class="text-gray-500 mb-6">Convert special characters to make URLs safe.</p>
+
+        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <textarea id="url-input" class="w-full h-48 p-4 rounded-xl border border-gray-300 outline-none focus:border-primary font-mono text-sm mb-4" placeholder="Paste your URL or text here..."></textarea>
+            
+            <div class="flex gap-3">
+                <button onclick="encodeUrl()" class="flex-1 bg-primary text-white font-bold py-3 rounded-xl hover:bg-blue-600 transition">Encode URL</button>
+                <button onclick="decodeUrl()" class="flex-1 bg-dark text-white font-bold py-3 rounded-xl hover:bg-gray-800 transition">Decode URL</button>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm mt-auto"><p>© 2026 ToolBox.</p></footer>
+    
+    <script>
+        let input = document.getElementById('url-input');
+        function encodeUrl() {
+            try { input.value = encodeURIComponent(input.value); } 
+            catch(e) { alert("Error encoding URL"); }
+        }
+        function decodeUrl() {
+            try { input.value = decodeURIComponent(input.value); } 
+            catch(e) { alert("Invalid URL format to decode"); }
+        }
+    </script>
+</body>
+</html>
