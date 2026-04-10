@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ToolBox</title>
+    <meta name="description" content="Get in touch with the ToolBox team.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { theme: { extend: { colors: { primary: '#3b82f6', dark: '#0f172a' } } } }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center">
+            <a href="index.html" class="text-xl font-bold text-primary flex items-center gap-2 hover:opacity-80">← Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="max-w-xl mx-auto px-4 py-12 flex-grow w-full">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+            <h1 class="text-3xl font-extrabold text-dark mb-2">Contact Us</h1>
+            <p class="text-gray-500 mb-8">Have a tool request or found a bug? Let us know!</p>
+            
+            <form id="contact-form" class="flex flex-col gap-4" onsubmit="submitForm(event)">
+                <div>
+                    <label class="font-bold text-sm text-gray-700">Name</label>
+                    <input type="text" required class="w-full mt-1 p-3 rounded-lg border border-gray-300 focus:border-primary outline-none" placeholder="Your Name">
+                </div>
+                <div>
+                    <label class="font-bold text-sm text-gray-700">Email</label>
+                    <input type="email" required class="w-full mt-1 p-3 rounded-lg border border-gray-300 focus:border-primary outline-none" placeholder="your@email.com">
+                </div>
+                <div>
+                    <label class="font-bold text-sm text-gray-700">Message</label>
+                    <textarea required class="w-full mt-1 p-3 rounded-lg border border-gray-300 focus:border-primary outline-none h-32 resize-none" placeholder="How can we help you?"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition mt-2">Send Message</button>
+            </form>
+
+            <div id="success-msg" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-lg text-center font-bold">
+                Thank you! Your message has been sent.
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm mt-auto">
+        <p>© 2026 ToolBox. Built for speed.</p>
+    </footer>
+
+    <script>
+        function submitForm(e) {
+            e.preventDefault(); // Mencegah halaman reload
+            document.getElementById('contact-form').classList.add('hidden');
+            document.getElementById('success-msg').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
