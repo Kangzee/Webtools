@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Base64 Encoder & Decoder Online</title>
+    <meta name="description" content="Encode and decode text to Base64 format instantly. Fast, secure, and free online tool for developers.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: { colors: { primary: '#3b82f6', dark: '#0f172a' } }
+        }
+      }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-primary flex items-center gap-2 hover:opacity-80 transition">← Back</a>
+            <div class="text-sm font-bold text-dark">Base64 Encoder/Decoder</div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+        <h1 class="text-2xl md:text-3xl font-extrabold text-dark mb-2">Base64 Encode & Decode</h1>
+        <p class="text-gray-500 mb-6 text-sm md:text-base">Convert your text to Base64 format or decode it back to plain text.</p>
+
+        <div class="flex flex-col gap-4 mb-6">
+            <textarea id="text-input" class="w-full h-64 p-4 rounded-xl border border-gray-300 focus:border-primary outline-none shadow-inner font-mono text-sm" placeholder="Paste your text here..."></textarea>
+            
+            <div class="flex gap-3">
+                <button onclick="encodeText()" class="flex-1 bg-primary hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition">Encode (To Base64)</button>
+                <button onclick="decodeText()" class="flex-1 bg-dark hover:bg-gray-800 text-white font-bold py-3 rounded-xl transition">Decode (To Text)</button>
+            </div>
+            
+            <button onclick="clearAll()" class="w-full bg-gray-200 hover:bg-red-500 hover:text-white font-bold py-2 rounded-xl transition text-sm">Clear</button>
+        </div>
+
+        <div class="w-full bg-gray-200 border-2 border-dashed border-gray-400 text-gray-500 text-center py-8 rounded-xl mb-12 flex flex-col items-center justify-center">
+            <span class="font-bold">Adsterra Native Banner Area</span>
+        </div>
+
+        <article class="prose max-w-none text-gray-600 text-sm border-t border-gray-200 pt-8 mt-8">
+            <h2 class="text-xl font-bold text-dark mb-3">Apa itu Base64?</h2>
+            <p>Base64 adalah skema pengkodean biner-ke-teks yang merepresentasikan data biner dalam format string ASCII. Ini sering digunakan dalam pengembangan web untuk menyematkan data gambar ke dalam file CSS atau HTML, atau mentransmisikan data mentah melalui protokol yang hanya mendukung teks.</p>
+        </article>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm mt-auto">
+        <p>© 2026 ToolBox. Built for speed.</p>
+    </footer>
+
+    <script>
+        const input = document.getElementById('text-input');
+
+        function encodeText() {
+            try {
+                input.value = btoa(input.value);
+            } catch (e) {
+                alert("Error encoding: " + e.message);
+            }
+        }
+
+        function decodeText() {
+            try {
+                input.value = atob(input.value);
+            } catch (e) {
+                alert("Invalid Base64 string!");
+            }
+        }
+
+        function clearAll() {
+            input.value = "";
+        }
+    </script>
+</body>
+</html>
