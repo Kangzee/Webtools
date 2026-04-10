@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free URL Slug Generator - Create SEO Friendly Links</title>
+    <meta name="description" content="Generate clean, SEO-friendly URL slugs from any text title. Perfect for bloggers and developers. 100% free online tool.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: { colors: { primary: '#3b82f6', dark: '#0f172a' } }
+        }
+      }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-primary flex items-center gap-2 hover:opacity-80 transition">← Back</a>
+            <div class="text-sm font-bold text-dark">URL Slug Generator</div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+        <h1 class="text-2xl md:text-3xl font-extrabold text-dark mb-2">URL Slug Generator</h1>
+        <p class="text-gray-500 mb-6 text-sm md:text-base">Convert your title into a clean URL slug instantly.</p>
+
+        <div class="flex flex-col gap-4 mb-6">
+            <input type="text" id="text-input" class="w-full p-4 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-blue-200 outline-none shadow-inner" placeholder="Enter title here (e.g. My Awesome Blog Post)">
+            
+            <div class="relative">
+                <input type="text" id="slug-output" class="w-full p-4 rounded-xl border border-gray-300 bg-gray-100 font-mono text-primary font-bold outline-none" readonly placeholder="your-slug-here">
+                <button onclick="copySlug()" class="absolute right-2 top-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-600 font-bold transition">Copy</button>
+            </div>
+        </div>
+
+        <div class="w-full bg-gray-200 border-2 border-dashed border-gray-400 text-gray-500 text-center py-8 rounded-xl mb-12 flex flex-col items-center justify-center">
+            <span class="font-bold">Adsterra Native Banner Area</span>
+        </div>
+
+        <article class="prose max-w-none text-gray-600 text-sm border-t border-gray-200 pt-8 mt-8">
+            <h2 class="text-xl font-bold text-dark mb-3">Apa itu URL Slug?</h2>
+            <p>URL slug adalah bagian akhir dari alamat website yang mengidentifikasi halaman spesifik. Menggunakan slug yang bersih (kebab-case) sangat disarankan oleh praktisi SEO karena mudah dibaca oleh mesin pencari dan manusia.</p>
+        </article>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm mt-auto">
+        <p>© 2026 ToolBox. Built for speed.</p>
+    </footer>
+
+    <script>
+        const input = document.getElementById('text-input');
+        const output = document.getElementById('slug-output');
+
+        input.addEventListener('input', function() {
+            let str = input.value;
+            let slug = str
+                .toLowerCase()
+                .trim()
+                .replace(/[^\w\s-]/g, '') // hapus karakter aneh
+                .replace(/[\s_-]+/g, '-') // ganti spasi jadi strip
+                .replace(/^-+|-+$/g, ''); // hapus strip di depan/belakang
+            output.value = slug;
+        });
+
+        function copySlug() {
+            if(!output.value) return;
+            navigator.clipboard.writeText(output.value);
+            alert("Slug copied!");
+        }
+    </script>
+</body>
+</html>
