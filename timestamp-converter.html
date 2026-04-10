@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unix Timestamp Converter - Epoch to Date</title>
+    <meta name="description" content="Convert Unix timestamp (Epoch time) to readable date and time instantly.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#3b82f6', dark: '#0f172a' } } } }</script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-primary flex items-center gap-2">← Back</a>
+            <div class="text-sm font-bold text-dark">Timestamp Converter</div>
+        </div>
+    </nav>
+    <main class="max-w-xl mx-auto px-4 py-8 flex-grow w-full">
+        <h1 class="text-2xl font-extrabold text-dark mb-2">Unix Timestamp Converter</h1>
+        <p class="text-gray-500 mb-6">Convert Epoch timestamps to human-readable dates.</p>
+
+        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-4">
+            <label class="font-bold text-sm text-gray-700">Enter Timestamp (Seconds or Milliseconds)</label>
+            <input type="number" id="timestamp-input" placeholder="e.g. 1712345678" class="w-full p-3 border border-gray-300 rounded-xl outline-none focus:border-primary font-mono text-lg">
+            
+            <button onclick="convertTime()" class="w-full bg-primary text-white font-bold py-3 rounded-xl hover:bg-blue-600 transition">Convert</button>
+            
+            <div class="mt-4 p-4 bg-gray-100 rounded-xl">
+                <span class="text-gray-500 font-bold block mb-1 text-sm">Local Time:</span>
+                <span id="result-local" class="text-lg font-black text-dark">...</span>
+                
+                <span class="text-gray-500 font-bold block mt-3 mb-1 text-sm">UTC Time:</span>
+                <span id="result-utc" class="text-lg font-black text-gray-700">...</span>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm mt-auto"><p>© 2026 ToolBox.</p></footer>
+    
+    <script>
+        function convertTime() {
+            let input = document.getElementById('timestamp-input').value;
+            if(!input) return;
+            
+            // Cek apakah ini seconds atau milliseconds (kalau panjangnya < 12, anggap seconds)
+            let ts = parseInt(input);
+            if(input.length < 12) ts = ts * 1000; 
+            
+            let date = new Date(ts);
+            
+            if(isNaN(date.getTime())) {
+                document.getElementById('result-local').innerText = "Invalid Timestamp";
+                document.getElementById('result-utc').innerText = "Invalid Timestamp";
+                return;
+            }
+            
+            document.getElementById('result-local').innerText = date.toLocaleString();
+            document.getElementById('result-utc').innerText = date.toUTCString();
+        }
+    </script>
+</body>
+</html>

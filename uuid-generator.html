@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free UUID/GUID Generator Online</title>
+    <meta name="description" content="Generate random universally unique identifiers (UUID/GUID) instantly. 100% free and client-side.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#3b82f6', dark: '#0f172a' } } } }</script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-primary flex items-center gap-2">← Back</a>
+            <div class="text-sm font-bold text-dark">UUID Generator</div>
+        </div>
+    </nav>
+    <main class="max-w-2xl mx-auto px-4 py-8 flex-grow w-full">
+        <h1 class="text-2xl font-extrabold text-dark mb-2">UUID/GUID Generator</h1>
+        <p class="text-gray-500 mb-6">Generate universally unique identifiers (v4) securely in your browser.</p>
+
+        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-4">
+            <div class="relative">
+                <input type="text" id="uuid-output" class="w-full p-4 rounded-xl border border-gray-300 bg-gray-100 font-mono text-center text-lg md:text-xl font-bold text-primary outline-none" readonly placeholder="Click generate...">
+            </div>
+            
+            <div class="flex gap-3">
+                <button onclick="generateUUID()" class="flex-1 bg-dark text-white font-bold py-3 rounded-xl hover:bg-gray-800 transition">Generate New UUID</button>
+                <button onclick="copyUUID()" class="bg-primary text-white font-bold py-3 px-6 rounded-xl hover:bg-blue-600 transition">Copy</button>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm mt-auto"><p>© 2026 ToolBox.</p></footer>
+    
+    <script>
+        function generateUUID() {
+            // Menggunakan Crypto API bawaan browser yang sangat aman
+            let uuid = crypto.randomUUID();
+            document.getElementById('uuid-output').value = uuid;
+        }
+        function copyUUID() {
+            let output = document.getElementById('uuid-output');
+            if(!output.value) return;
+            navigator.clipboard.writeText(output.value);
+            alert("UUID Copied!");
+        }
+        // Generate satu saat pertama kali buka
+        window.onload = generateUUID;
+    </script>
+</body>
+</html>
