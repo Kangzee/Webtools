@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online Word Counter & Character Count Tool</title>
+    <meta name="description" content="Count words, characters, sentences, paragraphs, and reading time instantly. 100% free online word counter tool for writers and students.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: '#3b82f6', dark: '#0f172a' }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-primary flex items-center gap-2 hover:opacity-80 transition">
+                ← Back
+            </a>
+            <div class="text-sm font-bold text-dark">
+                Word Counter
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
+        
+        <h1 class="text-2xl md:text-3xl font-extrabold text-dark mb-2">Word & Character Counter</h1>
+        <p class="text-gray-500 mb-6 text-sm md:text-base">Type or paste your text below to see instant statistics.</p>
+
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
+            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center">
+                <div id="stat-words" class="text-2xl md:text-3xl font-black text-primary">0</div>
+                <div class="text-xs text-gray-500 font-bold uppercase tracking-wide">Words</div>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center">
+                <div id="stat-chars" class="text-2xl md:text-3xl font-black text-primary">0</div>
+                <div class="text-xs text-gray-500 font-bold uppercase tracking-wide">Characters</div>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center">
+                <div id="stat-sentences" class="text-2xl md:text-3xl font-black text-dark">0</div>
+                <div class="text-xs text-gray-500 font-bold uppercase tracking-wide">Sentences</div>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center">
+                <div id="stat-paragraphs" class="text-2xl md:text-3xl font-black text-dark">0</div>
+                <div class="text-xs text-gray-500 font-bold uppercase tracking-wide">Paragraphs</div>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center col-span-2 md:col-span-1">
+                <div id="stat-reading" class="text-xl md:text-2xl font-black text-green-600">0 <span class="text-sm">min</span></div>
+                <div class="text-xs text-gray-500 font-bold uppercase tracking-wide">Reading Time</div>
+            </div>
+        </div>
+
+        <div class="mb-4 relative">
+            <textarea id="text-input" class="w-full h-64 md:h-96 p-5 rounded-2xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-blue-200 outline-none text-base md:text-lg resize-none shadow-inner leading-relaxed" placeholder="Type or paste your text here to start counting..."></textarea>
+            
+            <button onclick="clearText()" class="absolute bottom-4 right-4 bg-gray-200 hover:bg-red-500 hover:text-white text-gray-700 font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-sm">
+                Clear Text
+            </button>
+        </div>
+
+        <div class="w-full bg-gray-200 border-2 border-dashed border-gray-400 text-gray-500 text-center py-8 rounded-xl mb-12 flex flex-col items-center justify-center">
+            <span class="font-bold">Adsterra Native Banner Area</span>
+            <span class="text-xs">Ads will be injected here after approval</span>
+        </div>
+
+        <article class="prose max-w-none text-gray-600 text-sm border-t border-gray-200 pt-8 mt-8">
+            <h2 class="text-xl font-bold text-dark mb-3">About the Free Word Counter Tool</h2>
+            <p class="mb-4">Our online word counter is a perfect tool to check your text length instantly. Whether you are a student writing an essay, a professional crafting an email, or an SEO specialist optimizing content, this tool helps you stay within your character limits.</p>
+            
+            <h3 class="font-bold text-dark mt-6 mb-2">How do we calculate reading time?</h3>
+            <p class="mb-4">The average adult reads at a speed of roughly 200 to 250 words per minute. Our tool estimates reading time based on a standard speed of 200 words per minute to give you a realistic expectation of how long it takes to read your text.</p>
+        </article>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm mt-auto">
+        <p>© 2026 ToolBox. Built for speed.</p>
+    </footer>
+
+    <script>
+        const textInput = document.getElementById('text-input');
+        const statWords = document.getElementById('stat-words');
+        const statChars = document.getElementById('stat-chars');
+        const statSentences = document.getElementById('stat-sentences');
+        const statParagraphs = document.getElementById('stat-paragraphs');
+        const statReading = document.getElementById('stat-reading');
+
+        // Event Listener: Hitung otomatis setiap kali user ngetik
+        textInput.addEventListener('input', updateStats);
+
+        function updateStats() {
+            const text = textInput.value;
+            
+            // 1. Hitung Karakter
+            const charsCount = text.length;
+            statChars.innerText = charsCount.toLocaleString();
+
+            // 2. Hitung Kata
+            const wordsMatch = text.match(/\b\w+\b/g);
+            const wordsCount = wordsMatch ? wordsMatch.length : 0;
+            statWords.innerText = wordsCount.toLocaleString();
+
+            // 3. Hitung Kalimat (Pemisah: titik, tanda tanya, tanda seru)
+            const sentencesMatch = text.match(/[^.!?]+[.!?]+/g);
+            const sentencesCount = text.trim() === '' ? 0 : (sentencesMatch ? sentencesMatch.length : 1);
+            // Handling if text has no punctuation but has words
+            const finalSentencesCount = (wordsCount > 0 && sentencesCount === 0) ? 1 : sentencesCount;
+            statSentences.innerText = finalSentencesCount.toLocaleString();
+
+            // 4. Hitung Paragraf
+            const paragraphsMatch = text.split(/\n+/).filter(p => p.trim().length > 0);
+            const paragraphsCount = paragraphsMatch.length;
+            statParagraphs.innerText = paragraphsCount.toLocaleString();
+
+            // 5. Estimasi Waktu Baca (200 kata per menit)
+            const readingTimeMin = Math.ceil(wordsCount / 200);
+            statReading.innerHTML = `${wordsCount === 0 ? 0 : readingTimeMin} <span class="text-sm">min</span>`;
+        }
+
+        function clearText() {
+            textInput.value = '';
+            updateStats();
+            textInput.focus();
+        }
+    </script>
+</body>
+</html>
