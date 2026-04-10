@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Percentage Calculator Online</title>
+    <meta name="description" content="Calculate percentages instantly. Find out what is X% of Y easily with this free tool.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#3b82f6', dark: '#0f172a' } } } }</script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-primary flex items-center gap-2">← Back</a>
+            <div class="text-sm font-bold text-dark">Percentage Calculator</div>
+        </div>
+    </nav>
+    <main class="max-w-xl mx-auto px-4 py-8 flex-grow w-full">
+        <h1 class="text-2xl font-extrabold text-dark mb-2">Percentage Calculator</h1>
+        <p class="text-gray-500 mb-6">Calculate basic percentages instantly.</p>
+
+        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-4">
+            <div class="flex items-center gap-3 text-lg font-bold">
+                <span>What is</span>
+                <input type="number" id="percent" class="w-20 p-2 border border-gray-300 rounded text-center outline-none focus:border-primary" placeholder="10">
+                <span>% of</span>
+                <input type="number" id="number" class="w-24 p-2 border border-gray-300 rounded text-center outline-none focus:border-primary" placeholder="50">
+                <span>?</span>
+            </div>
+            <button onclick="calc()" class="w-full bg-primary text-white font-bold py-3 rounded mt-2 hover:bg-blue-600">Calculate</button>
+            
+            <div class="mt-4 p-4 bg-gray-100 rounded text-center">
+                <span class="text-gray-500 font-bold block mb-1">Result:</span>
+                <span id="result" class="text-3xl font-black text-dark">0</span>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm mt-auto"><p>© 2026 ToolBox.</p></footer>
+    <script>
+        function calc() {
+            let p = parseFloat(document.getElementById('percent').value);
+            let n = parseFloat(document.getElementById('number').value);
+            if(isNaN(p) || isNaN(n)) {
+                document.getElementById('result').innerText = "Invalid Input";
+                return;
+            }
+            let res = (p / 100) * n;
+            document.getElementById('result').innerText = res;
+        }
+    </script>
+</body>
+</html>
