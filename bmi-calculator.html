@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free BMI Calculator Online - Check Your Body Mass Index</title>
+    <meta name="description" content="Calculate your Body Mass Index (BMI) easily and instantly to check your health status.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#3b82f6', dark: '#0f172a' } } } }</script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-primary flex items-center gap-2">← Back</a>
+            <div class="text-sm font-bold text-dark">BMI Calculator</div>
+        </div>
+    </nav>
+    <main class="max-w-xl mx-auto px-4 py-8 flex-grow w-full">
+        <h1 class="text-2xl font-extrabold text-dark mb-2">BMI Calculator</h1>
+        <p class="text-gray-500 mb-6">Check if your weight is in a healthy range.</p>
+
+        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-4">
+            <div>
+                <label class="font-bold text-sm text-gray-700">Weight (kg)</label>
+                <input type="number" id="weight" placeholder="e.g. 70" class="w-full p-3 border border-gray-300 rounded outline-none focus:border-primary mt-1">
+            </div>
+            <div>
+                <label class="font-bold text-sm text-gray-700">Height (cm)</label>
+                <input type="number" id="height" placeholder="e.g. 175" class="w-full p-3 border border-gray-300 rounded outline-none focus:border-primary mt-1">
+            </div>
+            
+            <button onclick="calcBMI()" class="w-full bg-primary text-white font-bold py-3 rounded mt-2 hover:bg-blue-600 transition">Calculate BMI</button>
+            
+            <div id="result-box" class="hidden mt-4 p-5 bg-gray-100 border border-gray-200 rounded-lg text-center">
+                <div class="text-sm text-gray-500 font-bold uppercase mb-1">Your BMI is</div>
+                <div id="bmi-val" class="text-4xl font-black text-dark mb-1">0</div>
+                <div id="bmi-status" class="text-lg font-bold text-primary">Status</div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm mt-auto"><p>© 2026 ToolBox.</p></footer>
+    
+    <script>
+        function calcBMI() {
+            let weight = parseFloat(document.getElementById('weight').value);
+            let height = parseFloat(document.getElementById('height').value) / 100;
+            
+            if(!weight || !height) return alert("Please enter valid weight and height.");
+            
+            let bmi = (weight / (height * height)).toFixed(1);
+            let status = "";
+            let colorClass = "";
+            
+            if(bmi < 18.5) { status = "Underweight"; colorClass = "text-blue-500"; }
+            else if(bmi >= 18.5 && bmi < 24.9) { status = "Normal Weight"; colorClass = "text-green-500"; }
+            else if(bmi >= 25 && bmi < 29.9) { status = "Overweight"; colorClass = "text-yellow-500"; }
+            else { status = "Obese"; colorClass = "text-red-500"; }
+            
+            document.getElementById('bmi-val').innerText = bmi;
+            let statusEl = document.getElementById('bmi-status');
+            statusEl.innerText = status;
+            statusEl.className = `text-lg font-bold ${colorClass}`;
+            
+            document.getElementById('result-box').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Age Calculator Online - Calculate Exact Age</title>
+    <meta name="description" content="Calculate your exact age in years, months, and days instantly. Free online age calculator tool.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#3b82f6', dark: '#0f172a' } } } }</script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-primary flex items-center gap-2">← Back</a>
+            <div class="text-sm font-bold text-dark">Age Calculator</div>
+        </div>
+    </nav>
+    <main class="max-w-xl mx-auto px-4 py-8 flex-grow w-full">
+        <h1 class="text-2xl font-extrabold text-dark mb-2">Exact Age Calculator</h1>
+        <p class="text-gray-500 mb-6">Select your date of birth to see your exact age.</p>
+
+        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-4">
+            <label class="font-bold text-sm text-gray-700">Date of Birth</label>
+            <input type="date" id="dob" class="w-full p-3 border border-gray-300 rounded outline-none focus:border-primary">
+            
+            <button onclick="calcAge()" class="w-full bg-primary text-white font-bold py-3 rounded hover:bg-blue-600 transition">Calculate Age</button>
+            
+            <div id="result-box" class="hidden mt-4 p-4 bg-gray-100 border border-gray-200 rounded-lg text-center">
+                <span class="text-gray-500 font-bold block mb-2">You are exactly:</span>
+                <div id="result" class="text-2xl font-black text-dark text-primary"></div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm mt-auto"><p>© 2026 ToolBox.</p></footer>
+    
+    <script>
+        function calcAge() {
+            let dobInput = document.getElementById('dob').value;
+            if(!dobInput) return alert("Please select a date first.");
+            
+            let dob = new Date(dobInput);
+            let today = new Date();
+            
+            let years = today.getFullYear() - dob.getFullYear();
+            let months = today.getMonth() - dob.getMonth();
+            let days = today.getDate() - dob.getDate();
+            
+            if (months < 0 || (months === 0 && days < 0)) {
+                years--;
+                months += (months < 0 ? 12 : 11);
+            }
+            if (days < 0) {
+                let prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+            
+            document.getElementById('result').innerText = `${years} Years, ${months} Months, ${days} Days`;
+            document.getElementById('result-box').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
