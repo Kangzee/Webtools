@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Online Web Tools - Developer & Utility Tools</title>
-    <meta name="description" content="100% Free online tools for developers and daily utilities. JSON Formatter, Password Generator, Image Compressor, and more.">
+    <meta name="description" content="100% Free online tools for developers and daily utilities. JSON Formatter, Password Generator, Word Counter, and more.">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script>
       tailwind.config = {
         theme: {
-          extend: {
-            colors: { primary: '#3b82f6', dark: '#0f172a' }
-          }
+          extend: { colors: { primary: '#3b82f6', dark: '#0f172a' } }
         }
       }
     </script>
@@ -41,39 +38,58 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-4 pb-20">
-        <h2 class="text-xl font-bold text-dark mb-4 flex items-center gap-2">
-            👨‍💻 Developer Tools
-        </h2>
         
+        <h2 class="text-xl font-bold text-dark mb-4 border-b border-gray-200 pb-2">
+            📝 Text & Content Tools
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+            <a href="word-counter.html" class="bg-white p-5 rounded-xl border border-gray-200 hover:shadow-md hover:border-primary transition-all group">
+                <div class="w-10 h-10 bg-blue-50 text-primary rounded-lg flex items-center justify-center text-xl mb-3 group-hover:bg-primary group-hover:text-white transition-colors">📊</div>
+                <h3 class="font-bold text-lg mb-1">Word Counter</h3>
+                <p class="text-gray-500 text-sm">Count words, characters, and reading time instantly.</p>
+            </a>
+            <a href="case-converter.html" class="bg-white p-5 rounded-xl border border-gray-200 hover:shadow-md hover:border-primary transition-all group">
+                <div class="w-10 h-10 bg-blue-50 text-primary rounded-lg flex items-center justify-center text-xl mb-3 group-hover:bg-primary group-hover:text-white transition-colors">🔠</div>
+                <h3 class="font-bold text-lg mb-1">Case Converter</h3>
+                <p class="text-gray-500 text-sm">Convert text to UPPERCASE, lowercase, or Title Case.</p>
+            </a>
+            <a href="slug-generator.html" class="bg-white p-5 rounded-xl border border-gray-200 hover:shadow-md hover:border-primary transition-all group">
+                <div class="w-10 h-10 bg-blue-50 text-primary rounded-lg flex items-center justify-center text-xl mb-3 group-hover:bg-primary group-hover:text-white transition-colors">🔗</div>
+                <h3 class="font-bold text-lg mb-1">URL Slug Generator</h3>
+                <p class="text-gray-500 text-sm">Convert text strings into SEO-friendly URL slugs.</p>
+            </a>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mb-4 border-b border-gray-200 pb-2">
+            👨‍💻 Developer & Security
+        </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
             <a href="json-formatter.html" class="bg-white p-5 rounded-xl border border-gray-200 hover:shadow-md hover:border-primary transition-all group">
-                <div class="w-10 h-10 bg-blue-50 text-primary rounded-lg flex items-center justify-center text-xl mb-3 group-hover:bg-primary group-hover:text-white transition-colors">
-                    { }
-                </div>
+                <div class="w-10 h-10 bg-blue-50 text-primary rounded-lg flex items-center justify-center text-xl mb-3 group-hover:bg-primary group-hover:text-white transition-colors">{ }</div>
                 <h3 class="font-bold text-lg mb-1">JSON Formatter</h3>
-                <p class="text-gray-500 text-sm">Format, validate, and minify your JSON code instantly.</p>
+                <p class="text-gray-500 text-sm">Format, validate, and minify your JSON code.</p>
             </a>
-
             <a href="password-generator.html" class="bg-white p-5 rounded-xl border border-gray-200 hover:shadow-md hover:border-primary transition-all group">
-                <div class="w-10 h-10 bg-blue-50 text-primary rounded-lg flex items-center justify-center text-xl mb-3 group-hover:bg-primary group-hover:text-white transition-colors">
-                    🔑
-                </div>
+                <div class="w-10 h-10 bg-blue-50 text-primary rounded-lg flex items-center justify-center text-xl mb-3 group-hover:bg-primary group-hover:text-white transition-colors">🔑</div>
                 <h3 class="font-bold text-lg mb-1">Password Generator</h3>
                 <p class="text-gray-500 text-sm">Create strong, secure passwords with custom rules.</p>
             </a>
-            
-             <a href="word-counter.html" class="bg-white p-5 rounded-xl border border-gray-200 hover:shadow-md hover:border-primary transition-all group">
-                <div class="w-10 h-10 bg-blue-50 text-primary rounded-lg flex items-center justify-center text-xl mb-3 group-hover:bg-primary group-hover:text-white transition-colors">
-                    📝
-                </div>
-                <h3 class="font-bold text-lg mb-1">Word Counter</h3>
-                <p class="text-gray-500 text-sm">Count words, characters, and reading time.</p>
+            <a href="base64.html" class="bg-white p-5 rounded-xl border border-gray-200 hover:shadow-md hover:border-primary transition-all group">
+                <div class="w-10 h-10 bg-blue-50 text-primary rounded-lg flex items-center justify-center text-xl mb-3 group-hover:bg-primary group-hover:text-white transition-colors">🛠️</div>
+                <h3 class="font-bold text-lg mb-1">Base64 Encode/Decode</h3>
+                <p class="text-gray-500 text-sm">Encode text to Base64 or decode Base64 back to text.</p>
             </a>
         </div>
+
     </main>
 
-    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm">
+    <footer class="bg-white border-t border-gray-200 py-8 text-center text-gray-500 text-sm">
         <p>© 2026 ToolBox. Built for speed.</p>
+        <div class="mt-2 space-x-4">
+            <a href="#" class="hover:text-primary">Privacy Policy</a>
+            <a href="#" class="hover:text-primary">Terms of Service</a>
+            <a href="#" class="hover:text-primary">Contact</a>
+        </div>
     </footer>
 
 </body>
