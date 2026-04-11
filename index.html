@@ -12,19 +12,44 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
-    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="/" class="text-xl font-bold text-primary flex items-center gap-2">⚡ ToolBox</a>
-            <div class="text-sm font-medium text-gray-500">Free & Fast</div>
-        </div>
-    </nav>
+        <div class="sticky top-4 z-50 max-w-6xl mx-auto px-4">
+        <nav class="bg-white/80 backdrop-blur-md border border-gray-200 shadow-lg shadow-gray-200/20 rounded-2xl px-6 py-3 flex flex-wrap justify-between items-center transition-all">
+            
+            <a href="/" class="text-xl font-extrabold text-dark flex items-center gap-2 tracking-tight">
+                <span class="bg-dark text-white w-8 h-8 flex items-center justify-center rounded-lg text-lg">⚙️</span>
+                ToolBox<span class="text-primary">.</span>
+            </a>
 
-    <header class="max-w-4xl mx-auto text-center px-4 py-12">
-        <h1 class="text-3xl md:text-5xl font-extrabold text-dark mb-4">
-            Every Tool You Need, <span class="text-primary">In One Place.</span>
+            <div class="hidden md:flex items-center flex-grow max-w-md mx-8 relative">
+                <span class="absolute left-3 text-gray-400">🔍</span>
+                <input type="text" placeholder="Search tools... (Ctrl+K)" class="w-full bg-gray-100/50 border border-gray-200 text-sm rounded-xl py-2 pl-9 pr-4 outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all text-gray-700">
+            </div>
+
+            <div class="flex items-center gap-4">
+                <span class="hidden sm:inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase tracking-wider border border-green-200">
+                    100% Client-Side
+                </span>
+                <button class="md:hidden text-gray-600 hover:text-primary text-xl">
+                    ☰
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <header class="max-w-4xl mx-auto text-center px-4 pt-16 pb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            Professional Web Utilities
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black text-dark mb-6 leading-tight tracking-tight">
+            Perform Heavy Tasks, <br class="hidden md:block" />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-800">Directly in Your Browser.</span>
         </h1>
-        <p class="text-gray-500 text-lg mb-8">Fast, secure, and 100% free. All tools run directly in your browser.</p>
+        <p class="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto mb-8 font-medium">
+            Zero server uploads. No database tracking. High-performance tools designed for developers, data admins, and marketers.
+        </p>
     </header>
+
 
     <main class="max-w-6xl mx-auto px-4 pb-20">
         
